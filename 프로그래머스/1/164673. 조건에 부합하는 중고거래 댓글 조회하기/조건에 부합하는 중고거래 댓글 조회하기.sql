@@ -1,0 +1,7 @@
+-- 코드를 입력하세요  DATE_FORMAT(NOW(),'%Y-%m-%d')     
+-- 게시글 제목, 게시글 ID, 댓글 ID, 댓글 작성자 ID, 댓글 내용, 댓글 작성일
+SELECT B.TITLE, B.BOARD_ID, R.REPLY_ID, R.WRITER_ID, R.CONTENTS, TO_CHAR(R.CREATED_DATE, 'YYYY-MM-DD')
+FROM USED_GOODS_BOARD B JOIN USED_GOODS_REPLY R
+ON B.BOARD_ID = R.BOARD_ID
+AND extract (month FROM b.CREATED_DATE) = 10
+ORDER BY R.CREATED_DATE asc, B.title asc;
