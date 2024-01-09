@@ -1,15 +1,19 @@
+WITH temp_1 AS
+(
+SELECT 
+    DISTINCT CAR_ID
+FROM 
+    CAR_RENTAL_COMPANY_RENTAL_HISTORY
+WHERE '20221016' 
+    BETWEEN 
+        TO_CHAR(START_DATE, 'YYYYMMDD') 
+    AND
+        TO_CHAR(END_DATE, 'YYYYMMDD')
+)
+
 SELECT 
     CAR_ID, 
-    CASE WHEN CAR_ID IN     
-                        (SELECT 
-                            DISTINCT CAR_ID
-                        FROM 
-                            CAR_RENTAL_COMPANY_RENTAL_HISTORY
-                        WHERE '20221016' 
-                            BETWEEN 
-                                TO_CHAR(START_DATE, 'YYYYMMDD') 
-                            AND
-                                TO_CHAR(END_DATE, 'YYYYMMDD'))
+    CASE WHEN CAR_ID IN (select car_id from temp_1)          
         THEN '대여중'
         ELSE '대여 가능'
         END AS AVAILABILITY
