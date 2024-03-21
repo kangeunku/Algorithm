@@ -1,7 +1,9 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+
 
 public class Main {
     static int N;
@@ -17,9 +19,7 @@ public class Main {
                 city[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        for (int i = 0; i < N; i++) {
-            dfs(0, i,i, city,   visit, 0);
-        }
+        dfs(0, 0,0, city, visit, 0);
         System.out.println(answer);
     }
     static void dfs(int depth, int startCity, int presentCity, int[][] city, boolean[] visit, int cost){
